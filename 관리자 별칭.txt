@@ -1,0 +1,50 @@
+﻿교사 강의가능과목 - tAvlSubject
+과정명 - courseName
+과정기간 - courseDuration
+과목명 - subjectName
+과목기간 - subjectDuration
+강의실명 - className
+강의진행여부 - courseProgressStatus
+교사명 - teacherName
+개설과목등록여부 - subjectRegistration
+학생 등록 인원 - studentNum
+학생명 - studentName
+학생주민번호 - studentPw
+학생전화번호 - studentTel
+학생등록일 - studentRegidate
+수료여부 - completion
+수강신청횟수 - numberCourseRequests
+성적점수 - recordScore
+학생번호 - studentNumber
+근태일 - attendanceDay
+출근시간 - commuteTime
+퇴근시간 - quittingTime
+근태상황 - attendanceSituation
+수강신청번호 - enrollmentNumbers
+개설과정번호 - openingCourseNumber
+질문 - questionnaire
+유형 - questionType
+평가답변수 - answerVariables
+비율 - ratio
+평가내용 - contentsEvaluation
+학생전공 - studentMajor
+상담요청날짜 - callRequestDate
+상담요청내용 - callRequestDetails
+상담요청번호 - requestNumber
+상담날짜 - consultationDate
+상담내용 - contentsConsultation
+상담일지번호 - consultationNumber
+개설과정 등록 시간조건 - timeIf; 
+
+
+
+
+
+
+
+
+개설과정수 - numberOpenCourse  -> tblOpenCourse
+보기수 - numberExample -> tblExample
+교사수 - numberTeachers -> tblTeacher
+학생수 - numberStudent -> tblStudent
+
