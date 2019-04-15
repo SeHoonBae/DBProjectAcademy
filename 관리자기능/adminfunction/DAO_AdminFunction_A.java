@@ -11,6 +11,7 @@ import admin2_6_7.DTO_c_oc_r_tc_t_A;
 import admin2_6_7.DTO_oc_c_r_A;
 import admin2_6_7.DTO_oc_osm_s_A;
 import admin2_6_7.DTO_oc_rc_stu_result_A;
+import admin2_6_7.DTO_record_request_rc_stu_oc_tc_t_A;
 import admin2_6_7.DTO_request_rc_oc_c_stu_A;
 import admin2_6_7.DTO_request_rc_oc_c_tc_t_stu_A;
 import admin2_6_7.DTO_stu_rc_request_oc_A;
@@ -24,7 +25,7 @@ import common.DTO_Room;
 import common.DTO_Subject;
 import common.DTO_TeacherEval_Q;
 
-public class DAO_AdminFunction {
+public class DAO_AdminFunction_A {
 
 	private Connection conn;
 	private Statement stat;
@@ -32,7 +33,7 @@ public class DAO_AdminFunction {
 	
 	// 초기화(선행 작업)
 	// DB 접속
-	public DAO_AdminFunction() {
+	public DAO_AdminFunction_A() {
 		
 		try {
 			DBUtil util = new DBUtil();
@@ -576,7 +577,6 @@ String sql = "SELECT teq.evalq_seq as seq, teq.question as questionnaire, t.type
 
 		ArrayList<DTO_t_tc_oc_c_A> list = new ArrayList<DTO_t_tc_oc_c_A>();
 		
-		System.out.println("cnt : " + cnt);
 		
 		for(int i = 0; i < cnt; i++) {
 		
@@ -1056,13 +1056,363 @@ String sql = "SELECT cr.consult_seq, stu.name as studentName, stu.tel as student
 			
 			
 		} catch (SQLException e) {
-			System.out.println("DAO_AdminFunction클래스 daoConsultRequestStudentName(String name) 오류!");
+			System.out.println("DAO_AdminFunction클래스 daoConsultRequestStudentPw(String pw) 오류!");
 			e.printStackTrace();
 		}
 		
 		
 		return null;
 	}
+
+	public ArrayList<DTO_request_rc_oc_c_stu_A> daoConsultRequestStudentTel(String tel) {
+
+		String sql = "SELECT cr.consult_seq, stu.name as studentName, stu.tel as studentTel, stu.major as studentMajor, cr.requestDate as callrequestDate, cr.requestContent as callrequestDetails FROM tblConsultRequest cr INNER JOIN tblRegiCourse rc ON cr.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblOpenCourse oc ON rc.openCourse_seq = oc.openCourse_seq INNER JOIN tblCourse c ON oc.course_seq = c.course_seq INNER JOIN tblStudent stu ON stu.student_seq = rc.student_seq WHERE stu.tel = '" + tel +"'";
+		
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		
+		try {
+			
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_request_rc_oc_c_stu_A dto = new DTO_request_rc_oc_c_stu_A();
+				
+				dto.setconsult_Seq(rs.getString("consult_seq"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setStudentTel(rs.getString("studentTel"));
+				dto.setStudentMajor(rs.getString("studentMajor"));
+				dto.setCallrequestDate(rs.getString("callrequestDate"));
+				dto.setCallrequestDetails(rs.getString("callrequestDetails"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultRequestStudentTel(String tel) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<DTO_request_rc_oc_c_stu_A> daoConsultRequestStudentRegdate(String regdate) {
+
+		String sql = "SELECT cr.consult_seq, stu.name as studentName, stu.tel as studentTel, stu.major as studentMajor, cr.requestDate as callrequestDate, cr.requestContent as callrequestDetails FROM tblConsultRequest cr INNER JOIN tblRegiCourse rc ON cr.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblOpenCourse oc ON rc.openCourse_seq = oc.openCourse_seq INNER JOIN tblCourse c ON oc.course_seq = c.course_seq INNER JOIN tblStudent stu ON stu.student_seq = rc.student_seq WHERE stu.regidate = '" + regdate +"'";
+		
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		
+		try {
+			
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_request_rc_oc_c_stu_A dto = new DTO_request_rc_oc_c_stu_A();
+				
+				dto.setconsult_Seq(rs.getString("consult_seq"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setStudentTel(rs.getString("studentTel"));
+				dto.setStudentMajor(rs.getString("studentMajor"));
+				dto.setCallrequestDate(rs.getString("callrequestDate"));
+				dto.setCallrequestDetails(rs.getString("callrequestDetails"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultRequestStudentRegdate(String regdate) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<DTO_request_rc_oc_c_stu_A> daoConsultRequestStudentMajor(String major) {
+
+		String sql = "SELECT cr.consult_seq, stu.name as studentName, stu.tel as studentTel, stu.major as studentMajor, cr.requestDate as callrequestDate, cr.requestContent as callrequestDetails FROM tblConsultRequest cr INNER JOIN tblRegiCourse rc ON cr.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblOpenCourse oc ON rc.openCourse_seq = oc.openCourse_seq INNER JOIN tblCourse c ON oc.course_seq = c.course_seq INNER JOIN tblStudent stu ON stu.student_seq = rc.student_seq WHERE stu.major = '" + major +"'";
+		
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		
+		try {
+			
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_request_rc_oc_c_stu_A dto = new DTO_request_rc_oc_c_stu_A();
+				
+				dto.setconsult_Seq(rs.getString("consult_seq"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setStudentTel(rs.getString("studentTel"));
+				dto.setStudentMajor(rs.getString("studentMajor"));
+				dto.setCallrequestDate(rs.getString("callrequestDate"));
+				dto.setCallrequestDetails(rs.getString("callrequestDetails"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultRequestStudentRegdate(String regdate) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> daoConsultResultInfo() {
+
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		String sql = "SELECT record.record_seq, record.recordDate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestContent as callrequestDetails, record.recordContent as contentsConsultation FROM tblConsultRecord record INNER JOIN tblConsultRequest request ON record.consult_seq = request.consult_seq INNER JOIN tblRegiCourse rc ON request.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblStudent stu ON rc.student_seq = stu.student_seq INNER JOIN tblOpenCourse oc ON rc.openCourse_seq = oc.openCourse_seq INNER JOIN tblTeacherCourse tc ON oc.openCourse_seq = tc.openCourse_seq INNER JOIN tblTeacher t ON tc.teacher_seq = t.teacher_seq";
+		
+		try {
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_record_request_rc_stu_oc_tc_t_A dto = new DTO_record_request_rc_stu_oc_tc_t_A();
+				
+				dto.setRecord_seq(rs.getString("record_seq"));
+				dto.setConsultationDate(rs.getString("consultationDate"));
+				dto.setTeacherName(rs.getString("teacherName"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setCallrequestDetails(rs.getString("callrequestDetails"));
+				dto.setContentsConsultation(rs.getString("contentsConsultation"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultResultInfo() 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int daoConsultResultModify(String num, String date, String content) {
+
+		String sql = "UPDATE tblConsultRecord SET recordDate = '" + date + "', recordContent = '" + content + "' WHERE record_seq = " + num;
+		
+		try {
+			int result = stat.executeUpdate(sql);
+			
+			return result;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultResultModify(String num, String date, String content) 오류!");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public int daoConsultResultDelete(int num) {
+		
+		String sql = "DELETE FROM tblConsultRecord WHERE record_seq = " + num;
+		
+		try {
+			int result = stat.executeUpdate(sql);
+			
+			return result;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultResultDelete(int num) 오류!");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	public ArrayList<DTO_c_oc_r_tc_t_A> daoConsultResultInfoCourse() {
+
+		String sql = "select oc.opencourse_seq, c.name as courseName, oc.startdate || '~' || oc.enddate as courseDuration, t.name as teacherName, r.roomName as className from tblTeacher t inner join tblTeacherCourse tc on t.teacher_seq = tc.teacherCourse_seq inner join tblOpenCourse oc on tc.openCourse_seq = oc.openCourse_seq inner join tblCourse c on oc.course_seq = c.course_seq inner join tblRoom r on r.room_seq = oc.room_seq";
+		
+		ArrayList<DTO_c_oc_r_tc_t_A> list = new ArrayList<DTO_c_oc_r_tc_t_A>();
+		
+		try {
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_c_oc_r_tc_t_A dto = new DTO_c_oc_r_tc_t_A();
+				
+				dto.setOpencourse_seq(rs.getString("opencourse_seq"));
+				dto.setCourseName(rs.getString("courseName"));
+				dto.setCoureseDuration(rs.getString("courseDuration"));
+				dto.setTeacherName(rs.getString("teacherName"));
+				dto.setClassName(rs.getString("className"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultResultInfoCourse() 오류!");
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+
+	public ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> daoConsultResultInfoCourseViewModify(String choice) {
+
+		String sql = "select record.record_seq, record.recorddate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestcontent as callrequestDetails, record.recordcontent as contentsConsultation from tblConsultRecord record inner join tblConsultRequest request on record.consult_seq = request.consult_seq inner join tblRegiCourse rc on request.regiCourse_seq = rc.regiCourse_seq inner join tblStudent stu on rc.student_seq = stu.student_seq inner join tblOpenCourse oc on oc.openCourse_seq = rc.openCourse_seq inner join tblTeacherCourse tc on oc.openCourse_seq = tc.openCourse_seq inner join tblTeacher t on tc.teacher_seq = t.teacher_seq where oc.opencourse_seq = " + choice;
+		
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		try {
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_record_request_rc_stu_oc_tc_t_A dto = new DTO_record_request_rc_stu_oc_tc_t_A();
+				
+				dto.setRecord_seq(rs.getString("record_seq"));
+				dto.setConsultationDate(rs.getString("consultationDate"));
+				dto.setTeacherName(rs.getString("teacherName"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setCallrequestDetails(rs.getString("callrequestDetails"));
+				dto.setContentsConsultation(rs.getString("contentsConsultation"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultResultInfoCourseViewModify(String choice) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+	public ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> daoConsultRecordStudentName(String name) {
+
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		String sql = "SELECT record.record_seq, record.recordDate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestContent as callRequestDetails, record.recordcontent as contentsConsultation FROM tblConsultRecord record INNER JOIN tblConsultRequest request ON record.consult_seq = request.consult_seq INNER JOIN tblRegiCourse rc ON request.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblStudent stu ON rc.student_seq = stu.student_seq INNER JOIN tblOpenCourse oc ON oc.openCourse_seq = rc.openCourse_seq INNER JOIN tblTeacherCourse tc ON oc.openCourse_seq = tc.openCourse_seq INNER JOIN tblTeacher t ON tc.teacher_seq = t.teacher_seq WHERE stu.name = '" + name + "'";
+		
+		try {
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_record_request_rc_stu_oc_tc_t_A dto = new DTO_record_request_rc_stu_oc_tc_t_A();
+				
+				dto.setRecord_seq(rs.getString("record_seq"));
+				dto.setConsultationDate(rs.getString("consultationDate"));
+				dto.setTeacherName(rs.getString("teacherName"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setCallrequestDetails(rs.getString("callRequestDetails"));
+				dto.setContentsConsultation(rs.getString("contentsConsultation"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultRecordStudentName(String name) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> daoConsultRecordStudentPw(String pw) {
+
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		String sql = "SELECT record.record_seq, record.recordDate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestContent as callRequestDetails, record.recordcontent as contentsConsultation FROM tblConsultRecord record INNER JOIN tblConsultRequest request ON record.consult_seq = request.consult_seq INNER JOIN tblRegiCourse rc ON request.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblStudent stu ON rc.student_seq = stu.student_seq INNER JOIN tblOpenCourse oc ON oc.openCourse_seq = rc.openCourse_seq INNER JOIN tblTeacherCourse tc ON oc.openCourse_seq = tc.openCourse_seq INNER JOIN tblTeacher t ON tc.teacher_seq = t.teacher_seq WHERE stu.pw = '" + pw + "'";
+		
+		try {
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_record_request_rc_stu_oc_tc_t_A dto = new DTO_record_request_rc_stu_oc_tc_t_A();
+				
+				dto.setRecord_seq(rs.getString("record_seq"));
+				dto.setConsultationDate(rs.getString("consultationDate"));
+				dto.setTeacherName(rs.getString("teacherName"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setCallrequestDetails(rs.getString("callRequestDetails"));
+				dto.setContentsConsultation(rs.getString("contentsConsultation"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultRecordStudentPw(String pw) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> daoConsultRecordStudentMajor(String major) {
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		String sql = "SELECT record.record_seq, record.recordDate as consultationDate, t.name as teacherName, stu.name as studentName, request.requestContent as callRequestDetails, record.recordcontent as contentsConsultation FROM tblConsultRecord record INNER JOIN tblConsultRequest request ON record.consult_seq = request.consult_seq INNER JOIN tblRegiCourse rc ON request.regiCourse_seq = rc.regiCourse_seq INNER JOIN tblStudent stu ON rc.student_seq = stu.student_seq INNER JOIN tblOpenCourse oc ON oc.openCourse_seq = rc.openCourse_seq INNER JOIN tblTeacherCourse tc ON oc.openCourse_seq = tc.openCourse_seq INNER JOIN tblTeacher t ON tc.teacher_seq = t.teacher_seq WHERE stu.major = '" + major + "'";
+		
+		try {
+			ResultSet rs = stat.executeQuery(sql);
+			
+			while(rs.next()) {
+				
+				DTO_record_request_rc_stu_oc_tc_t_A dto = new DTO_record_request_rc_stu_oc_tc_t_A();
+				
+				dto.setRecord_seq(rs.getString("record_seq"));
+				dto.setConsultationDate(rs.getString("consultationDate"));
+				dto.setTeacherName(rs.getString("teacherName"));
+				dto.setStudentName(rs.getString("studentName"));
+				dto.setCallrequestDetails(rs.getString("callRequestDetails"));
+				dto.setContentsConsultation(rs.getString("contentsConsultation"));
+				
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("DAO_AdminFunction클래스 daoConsultRecordStudentMajor(String major) 오류!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
 
 
 

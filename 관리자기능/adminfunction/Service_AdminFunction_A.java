@@ -7,9 +7,9 @@ import admin2_6_7.DTO_c_oc_r_tc_t_A;
 import admin2_6_7.DTO_oc_c_r_A;
 import admin2_6_7.DTO_oc_osm_s_A;
 import admin2_6_7.DTO_oc_rc_stu_result_A;
+import admin2_6_7.DTO_record_request_rc_stu_oc_tc_t_A;
 import admin2_6_7.DTO_request_rc_oc_c_stu_A;
 import admin2_6_7.DTO_request_rc_oc_c_tc_t_stu_A;
-import admin2_6_7.DTO_stu_rc_request_A;
 import admin2_6_7.DTO_stu_rc_request_oc_A;
 import admin2_6_7.DTO_t_tc_oc_c_A;
 import admin2_6_7.DTO_teq_t_A;
@@ -20,20 +20,20 @@ import common.DTO_Room;
 import common.DTO_Subject;
 import common.DTO_TeacherEval_Q;
 
-public class Service_AdminFunction implements IService_AdminFunction {
+public class Service_AdminFunction_A implements IService_AdminFunction_A {
 
-	private ViewAdminFunction viewAdminFunction;
+	private View_AdminFunction_A viewAdminFunction;
 	
-	public Service_AdminFunction() {
+	public Service_AdminFunction_A() {
 		
-		viewAdminFunction = new ViewAdminFunction();
+		viewAdminFunction = new View_AdminFunction_A();
 		
 	}
 	
 	@Override
 	public void sOpenMgmtInfo() {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		ArrayList<DTO_oc_c_r_A> list = new ArrayList<DTO_oc_c_r_A>();
 		
@@ -49,7 +49,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public int sOpenMgmtInfoDetails(int num) {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction(); 
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A(); 
 		ArrayList<DTO_OpenCourse> list = new ArrayList<DTO_OpenCourse>();
 		
 		list = dao_adminFunction.daoOpenMgmtInfoNum();
@@ -64,7 +64,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	public void sOCSmgmtdetails(int num) {
 		//1. 관리자 - 2. 개설 과정 및 과목 관리 - 1. (상세보기)에서 출력할 내용들 저장하여 view에 넘겨줌
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		String courseName = dao_adminFunction.daoOpenMgmtCourseName(num);
 		String teacherName = dao_adminFunction.daoOpenMgmtTeacherName(num);
@@ -93,7 +93,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 		
 		ArrayList<DTO_Subject> list = new ArrayList<DTO_Subject>();
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		list = dao_adminFunction.daoOpenMgmtSubjectRegistration();
 		
 		viewAdminFunction.vOpenMgmtSubjectRegistration(list);
@@ -132,7 +132,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 
 		ArrayList<DTO_Course> list = new ArrayList<DTO_Course>();
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		list = dao_adminFunction.daoSubject();
 		
@@ -184,7 +184,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionRegister() {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.print("질문 : ");
@@ -216,7 +216,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionModifyDelete() {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		ArrayList<DTO_teq_t_A> list = new ArrayList<DTO_teq_t_A>();
 		
@@ -231,7 +231,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionModifyDeleteNumber(int choiceNum) {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		DTO_teq_t_A teq_t = dao_adminFunction.daossTeacherEvalQuestionModifyDeleteNumber(choiceNum);
 		
@@ -244,7 +244,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionModify(int choiceNum) {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		DTO_teq_t_A teq_t = dao_adminFunction.daossTeacherEvalQuestionModifyDeleteNumber(choiceNum);
 		
@@ -282,7 +282,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionDelete(int choiceNum) {
 
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		DTO_teq_t_A teq_t = dao_adminFunction.daossTeacherEvalQuestionModifyDeleteNumber(choiceNum);
 		
@@ -314,7 +314,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionResultInfoDelete() {
 
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		int cnt = dao_adminFunction.daoOpenCourseNum();
 		
@@ -332,7 +332,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sTeacherEvalQuestionResultInfoDeleteInfo(String select) {
 
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		String courseName = dao_adminFunction.daoCourseName(select); // 해당 과정명
 		String teacherName = dao_adminFunction.daoTeacherName(select); // 해당 과정 교사명
@@ -358,7 +358,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sConsultRequestInfoModify() {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		ArrayList<DTO_request_rc_oc_c_tc_t_stu_A> list = new ArrayList<DTO_request_rc_oc_c_tc_t_stu_A>();
 		
@@ -375,7 +375,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		System.out.print("요청번호 : ");
 		int num = scan.nextInt();
@@ -409,7 +409,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 
 		Scanner scan = new Scanner(System.in);
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		System.out.print("요청번호 : ");
 		int num = scan.nextInt();
@@ -437,7 +437,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sConsultRequestCourse() {
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		ArrayList<DTO_c_oc_r_tc_t_A> list = new ArrayList<DTO_c_oc_r_tc_t_A>();
 		
@@ -453,7 +453,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sConsultRequestCourseSelect(String select) {
 
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		String teacherName = dao_adminFunction.daoConsultRequestCourseTeacherName(select);
 		String courseName = dao_adminFunction.daoConsultRequestCourseCourseName(select);
@@ -485,7 +485,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 		
 		if(choice.equalsIgnoreCase("y")) {
 			
-			DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+			DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 			
 			int result = dao_adminFunction.daoConsultRequestCourseModify(num, date, content);
 			
@@ -522,7 +522,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 		
 		if(choice.equalsIgnoreCase("y")) {
 			
-			DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+			DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 			
 			int result = dao_adminFunction.daoConsultRequestCourseDelete(num);
 			
@@ -550,7 +550,7 @@ public class Service_AdminFunction implements IService_AdminFunction {
 		
 		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		list = dao_adminFunction.daoConsultRequestStudentName(name);
 		
@@ -565,9 +565,9 @@ public class Service_AdminFunction implements IService_AdminFunction {
 	@Override
 	public void sConsultRequestStudentPw(String pw) {
 		
-ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
 		
-		DAO_AdminFunction dao_adminFunction = new DAO_AdminFunction();
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
 		
 		list = dao_adminFunction.daoConsultRequestStudentPw(pw);
 		
@@ -578,6 +578,252 @@ ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_st
 		dao_adminFunction.close();
 		
 	}
+
+	@Override
+	public void sConsultRequestStudentTel(String tel) {
+		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
+		// 전화번호
+		
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		list = dao_adminFunction.daoConsultRequestStudentTel(tel);
+		
+		viewAdminFunction.vConsultRequestStudentTelAfter(list);
+		
+		dao_adminFunction.close();
+		
+	}
+
+	@Override
+	public void sConsultRequestStudentRegdate(String regdate) {
+		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
+		// 등록일
+		
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		list = dao_adminFunction.daoConsultRequestStudentRegdate(regdate);
+		
+		viewAdminFunction.vConsultRequestStudentRegdateAfter(list);
+		
+		dao_adminFunction.close();
+		
+	}
+
+	@Override
+	public void sConsultRequestStudentMajor(String major) {
+		
+		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
+		// 학과
+		
+		ArrayList<DTO_request_rc_oc_c_stu_A> list = new ArrayList<DTO_request_rc_oc_c_stu_A>();
+		
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		list = dao_adminFunction.daoConsultRequestStudentMajor(major);
+		
+		viewAdminFunction.vConsultRequestStudentMajorAfter(list);
+		
+		dao_adminFunction.close();
+		
+	}
+
+	@Override
+	public void sConsultResultInfo() {
+		
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		list = dao_adminFunction.daoConsultResultInfo();
+		
+		viewAdminFunction.vConsultResultInfo(list);
+		
+		dao_adminFunction.close();
+	}
+
+	@Override
+	public void sConsultResultModify() {
+		// 상담일지 수정 고치기
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("■ 수정하기");
+		System.out.print("상담번호 : ");
+		String num = scan.nextLine();
+		System.out.print("상담날짜(ex 2019-04-01) : ");
+		String date = scan.nextLine();
+		System.out.print("상담내용 : ");
+		String content = scan.nextLine();
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("정말로 수정하시겠습니까?(y/n)");
+		String choice = scan.nextLine();
+		
+		if(choice.equalsIgnoreCase("y")) {
+			
+			DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+			
+			int result = dao_adminFunction.daoConsultResultModify(num, date, content);
+			
+			
+			
+			if(result == 1) {
+				System.out.println("수정 완료!");
+			}else if(result == 0) {
+				System.out.println("수정 실패!");
+			}
+			
+			dao_adminFunction.close();
+			
+		}else if(choice.equalsIgnoreCase("n")) {
+			System.out.println("수정 취소!");
+		}
+		
+		System.out.println("계속하시려면 엔터를 입력하세요.");
+		scan.nextLine();
+		
+	}
+
+	@Override
+	public void sConsultResultDelete() {
+
+		// 상담 일지 삭제 고치기
+		
+		Scanner scan = new Scanner(System.in);
+		
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		System.out.println("■ 삭제하기");
+		System.out.print("상담번호 : ");
+		int num = scan.nextInt();
+		scan.nextLine();
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("정말로 삭제하시겠습니까?(y/n)");
+		String select = scan.nextLine();
+		
+		if(select.equalsIgnoreCase("y")) {
+			int result = dao_adminFunction.daoConsultResultDelete(num);
+			
+			if(result == 1) {
+				System.out.println("삭제 완료!");
+			}else if(result == 0) {
+				System.out.println("삭제 실패!");
+			}
+		}else if (select.equalsIgnoreCase("n")) {
+			System.out.println("삭제 취소");
+		}
+		
+		dao_adminFunction.close();
+		
+		System.out.println("계속하시려면 엔터를 입력하세요.");
+		scan.nextLine();
+		
+	}
+
+	@Override
+	public void sConsultResultInfoCourse() {
+		
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		ArrayList<DTO_c_oc_r_tc_t_A> list = new ArrayList<DTO_c_oc_r_tc_t_A>();
+		
+		list = dao_adminFunction.daoConsultResultInfoCourse();
+		
+		viewAdminFunction.vConsultResultInfoCourse(list);
+		
+		
+		
+		dao_adminFunction.close();
+		
+	}
+
+	@Override
+	public void sConsultResultInfoCourseViewModify(String choice) {
+
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		list = dao_adminFunction.daoConsultResultInfoCourseViewModify(choice);
+		
+		viewAdminFunction.vConsultResultInfoCourseViewModify(list);
+		
+		dao_adminFunction.close();
+		
+	}
+
+	@Override
+	public void cConsultRecordStudentName() {
+		
+		Scanner scan = new Scanner(System.in);
+
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		viewAdminFunction.vConsultRecordStudent();
+		
+		System.out.print("학생명 : ");
+		String name = scan.nextLine();
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		
+		list = dao_adminFunction.daoConsultRecordStudentName(name);
+		
+		viewAdminFunction.vConsultRecordStudentName(list);
+		
+		
+		dao_adminFunction.close();
+	}
+
+	@Override
+	public void cConsultRecordStudentPw() {
+		Scanner scan = new Scanner(System.in);
+
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		viewAdminFunction.vConsultRecordStudent();
+		
+		System.out.print("주민번호 뒷자리 : ");
+		String pw = scan.nextLine();
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		
+		list = dao_adminFunction.daoConsultRecordStudentPw(pw);
+		
+		viewAdminFunction.vConsultRecordStudentName(list);
+		
+		
+		dao_adminFunction.close();
+		
+	}
+
+	@Override
+	public void cConsultRecordStudentMajor() {
+		Scanner scan = new Scanner(System.in);
+
+		DAO_AdminFunction_A dao_adminFunction = new DAO_AdminFunction_A();
+		
+		ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list = new ArrayList<DTO_record_request_rc_stu_oc_tc_t_A>();
+		
+		viewAdminFunction.vConsultRecordStudent();
+		
+		System.out.print("학과 : ");
+		String major = scan.nextLine();
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		
+		list = dao_adminFunction.daoConsultRecordStudentMajor(major);
+		
+		viewAdminFunction.vConsultRecordStudentName(list);
+		
+		
+		dao_adminFunction.close();
+		
+	}
+
 
 
 	

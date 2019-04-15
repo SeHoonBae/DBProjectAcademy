@@ -1,6 +1,6 @@
 package adminfunction;
 
-public interface IService_AdminFunction {
+public interface IService_AdminFunction_A {
 
 	void sOpenMgmtInfo();
 	int sOpenMgmtInfoDetails(int num);
@@ -23,6 +23,17 @@ public interface IService_AdminFunction {
 	void sConsultRequestCourseDelete();
 	void sConsultRequestStudentName(String name);
 	void sConsultRequestStudentPw(String pw);
+	void sConsultRequestStudentTel(String tel);
+	void sConsultRequestStudentRegdate(String regdate);
+	void sConsultRequestStudentMajor(String major);
+	void sConsultResultInfo();
+	void sConsultResultModify();
+	void sConsultResultDelete();
+	void sConsultResultInfoCourse();
+	void sConsultResultInfoCourseViewModify(String choice);
+	void cConsultRecordStudentName();
+	void cConsultRecordStudentPw();
+	void cConsultRecordStudentMajor();
 
 	
 	

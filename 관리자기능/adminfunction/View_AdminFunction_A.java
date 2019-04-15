@@ -6,6 +6,7 @@ import admin2_6_7.DTO_c_oc_r_tc_t_A;
 import admin2_6_7.DTO_oc_c_r_A;
 import admin2_6_7.DTO_oc_osm_s_A;
 import admin2_6_7.DTO_oc_rc_stu_result_A;
+import admin2_6_7.DTO_record_request_rc_stu_oc_tc_t_A;
 import admin2_6_7.DTO_request_rc_oc_c_stu_A;
 import admin2_6_7.DTO_request_rc_oc_c_tc_t_stu_A;
 import admin2_6_7.DTO_stu_rc_request_A;
@@ -18,7 +19,7 @@ import common.DTO_Room;
 import common.DTO_Subject;
 import common.DTO_TeacherEval_Q;
 
-public class ViewAdminFunction {
+public class View_AdminFunction_A {
 
 	public void vOpenMgmt() {
 		
@@ -449,7 +450,7 @@ public class ViewAdminFunction {
 
 	public void vConsultRequestStudentPwAfter(ArrayList<DTO_request_rc_oc_c_stu_A> list) {
 		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
-		
+		// 주민뒷자리
 				System.out.println("요청번호\t학생명\t연락처\t\t학과\t\t상담요청일\t\t\t상담요청내용");
 				
 				for(int i = 0; i < list.size(); i++) {
@@ -468,6 +469,251 @@ public class ViewAdminFunction {
 				System.out.println("b. 삭제하기");
 				System.out.println();
 				System.out.println("z. 뒤로가기");
+		
+	}
+
+	public void vConsultRequestStudenTel() {
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 -c. 학생별 조회 및 수정 - 검색, 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.print("전화번호(-포함) : ");
+	}
+
+	public void vConsultRequestStudentTelAfter(ArrayList<DTO_request_rc_oc_c_stu_A> list) {
+		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
+		// 전화번호
+		
+		System.out.println("요청번호\t학생명\t연락처\t\t학과\t\t상담요청일\t\t\t상담요청내용");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s\t\t%s\t%s\t%s\t%s\t%s\n"
+							,list.get(i).getconsult_Seq()
+							,list.get(i).getStudentName()
+							,list.get(i).getStudentTel()
+							,list.get(i).getStudentMajor()
+							,list.get(i).getCallrequestDate()
+							,list.get(i).getCallrequestDetails()
+							);
+		}
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("a. 수정하기");
+		System.out.println("b. 삭제하기");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		
+	}
+
+	public void vConsultRequestStudenRegdate() {
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 -c. 학생별 조회 및 수정 - 검색, 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.print("등록일(ex 2017-01-01) : ");
+		
+	}
+
+	public void vConsultRequestStudentRegdateAfter(ArrayList<DTO_request_rc_oc_c_stu_A> list) {
+		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
+		// 등록일
+		
+		System.out.println("요청번호\t학생명\t연락처\t\t학과\t\t상담요청일\t\t\t상담요청내용");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s\t\t%s\t%s\t%s\t%s\t%s\n"
+							,list.get(i).getconsult_Seq()
+							,list.get(i).getStudentName()
+							,list.get(i).getStudentTel()
+							,list.get(i).getStudentMajor()
+							,list.get(i).getCallrequestDate()
+							,list.get(i).getCallrequestDetails()
+							);
+		}
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("a. 수정하기");
+		System.out.println("b. 삭제하기");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		
+	}
+
+	public void vConsultRequestStudenMajor() {
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 -c. 학생별 조회 및 수정 - 검색, 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.print("학과 : ");
+		
+	}
+
+	public void vConsultRequestStudentMajorAfter(ArrayList<DTO_request_rc_oc_c_stu_A> list) {
+		// 1. 관리자 – 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 – c. 학생별 조회 및 수정 – 검색 – 조회 및 수정 뒷부분 출력
+		// 학과
+		
+		System.out.println("요청번호\t학생명\t연락처\t\t학과\t\t상담요청일\t\t\t상담요청내용");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s\t\t%s\t%s\t%s\t%s\t%s\n"
+							,list.get(i).getconsult_Seq()
+							,list.get(i).getStudentName()
+							,list.get(i).getStudentTel()
+							,list.get(i).getStudentMajor()
+							,list.get(i).getCallrequestDate()
+							,list.get(i).getCallrequestDetails()
+							);
+		}
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("a. 수정하기");
+		System.out.println("b. 삭제하기");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		
+	}
+
+	public void vConsultResult() {
+		
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.println("a. 일괄 조회");
+		System.out.println("b. 과정별 조회");
+		System.out.println("c. 학생별 조회");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		System.out.print("선택하세요 : ");
+	}
+
+	public void vConsultResultInfo(ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list) {
+		
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - a. 일괄 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.println("상담번호\t상담일시\t\t교사명\t학생명\t상담요청내용\t\t\t상담내용");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s\t\t%s\t%s\t%s\t%s\t%s\n"
+							, list.get(i).getRecord_seq()
+							, list.get(i).getConsultationDate()
+							, list.get(i).getTeacherName()
+							, list.get(i).getStudentName()
+							, list.get(i).getCallrequestDetails()
+							, list.get(i).getContentsConsultation()
+							);
+		}
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("a. 수정하기");
+		System.out.println("b. 삭제하기");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		
+		System.out.print("선택하세요 : ");
+	}
+
+	public void vConsultResultInfoCourse(ArrayList<DTO_c_oc_r_tc_t_A> list) {
+		
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - b. 과정별 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.println("번호\t과정명\t\t\t\t\t\t과정기간\t\t\t\t교사명\t\t강의실명");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s.\t%s\t\t%s\t\t%s\t\t%s\n"
+							,list.get(i).getOpencourse_seq()
+							,list.get(i).getCourseName()
+							,list.get(i).getCoureseDuration()
+							,list.get(i).getTeacherName()
+							,list.get(i).getClassName()
+							);
+		}
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("- 조회 및 수정을 원하시면 해당 번호를 선택해주세요.");
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		
+	}
+
+	public void vConsultResultInfoCourseViewModify(ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list) {
+
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - b. 과정별 조회 및 수정 - 1. 선택");
+		System.out.println("=====================================================================================================================================================================================");
+		
+		System.out.println("번호\t\t상담일시\t\t교사명\t학생명\t상담요청내용\t\t\t\t\t상담내용");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s.\t\t%s\t%s\t%s\t%s\t\t%s\n"
+							,list.get(i).getRecord_seq()
+							,list.get(i).getConsultationDate()
+							,list.get(i).getTeacherName()
+							,list.get(i).getStudentName()
+							,list.get(i).getCallrequestDetails()
+							,list.get(i).getContentsConsultation()
+							);
+		}
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("a. 수정하기");
+		System.out.println("b. 삭제하기");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		System.out.print("선택하세요 : ");
+		
+	}
+
+	public void vConsultRecordStudentInfoModify() {
+
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("■ 검색 조건");
+		System.out.println();
+		System.out.println("a. 학생명");
+		System.out.println("b. 주민번호뒷자리");
+		System.out.println("c. 학과");
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		
+		System.out.println("선택하세요 : ");
+	}
+
+	public void vConsultRecordStudent() {
+
+		System.out.println("=====================================================================================================================================================================================");
+		System.out.println("\t\t 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정");
+		System.out.println("=====================================================================================================================================================================================");
+		
+	}
+
+	public void vConsultRecordStudentName(ArrayList<DTO_record_request_rc_stu_oc_tc_t_A> list) {
+		
+		System.out.println("상담번호\t상담일시\t\t교사명\t학생명\t상담요청내용\t\t\t\t\t상담내용");
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.printf("%s.\t\t%s\t%s\t%s\t%s\t%s\n"
+							,list.get(i).getRecord_seq()
+							,list.get(i).getConsultationDate()
+							,list.get(i).getTeacherName()
+							,list.get(i).getStudentName()
+							,list.get(i).getCallrequestDetails()
+							,list.get(i).getContentsConsultation()
+							);
+		}
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println("a. 수정하기");
+		System.out.println("b. 삭제하기");
+		System.out.println();
+		System.out.println("z. 뒤로가기");
+		System.out.print("선택하세요 : ");
 		
 	}
 

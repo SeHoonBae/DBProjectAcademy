@@ -4,12 +4,15 @@ public class DTO_c_oc_r_tc_t_A {
 
 	/*
 	 * 1. 관리자 - 7. 상담일지 관리 및 조회 - a. 상담 요청 내역 - b. 과정별 조회 및 수정
+	 * -- 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - b. 교사별 조회 및 수정
+	 * -- 1. 관리자 – 5. 출결 관리 및 출결조회 - b. 과정별 조회
 	 * 
 	 * tblCourse
 	 * tblOpenCourse
 	 * tblRoom
 	 * tblTeacherCourse
 	 * tblTeacher
+	 * 
 	 */
 	
 	private String rownum; // 상담 요청 내역의 교사별 조회 순서 번호
@@ -19,7 +22,14 @@ public class DTO_c_oc_r_tc_t_A {
 	private String className;// 상담 요청 내역의 교사별 조회 강의실명
 	private String teacherNum; // 상담 요청 내역의 교사별 조회 교사번호
 	private String openCourseNum; // 상담 요청 내역의 교사별 조회 개설과정번호
+	private String opencourse_seq; // 상담일지 내역의 개설과정번호
 	
+	public String getOpencourse_seq() {
+		return opencourse_seq;
+	}
+	public void setOpencourse_seq(String opencourse_seq) {
+		this.opencourse_seq = opencourse_seq;
+	}
 	
 	
 	public String getTeacherNum() {

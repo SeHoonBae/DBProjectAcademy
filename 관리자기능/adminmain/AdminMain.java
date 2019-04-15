@@ -8,8 +8,10 @@ public class AdminMain {
 
 	private ViewAdminMain viewAdminMain;
 	private IAdminMainService iAdminMainService;
-	private IService_AdminFunction adminFunction;
-	private ViewAdminFunction viewAdminFunction;
+	private IService_AdminFunction_A adminFunction;
+	private View_AdminFunction_A viewAdminFunction;
+	private View_AdminFunction2_A viewAdminFunction2;
+	private IService_AdminFunction2_A adminFunction2;
 	private Scanner scan;
 	public static String id;
 	public static String pw;
@@ -18,8 +20,10 @@ public class AdminMain {
 
 		viewAdminMain = new ViewAdminMain();
 		iAdminMainService = new AdminMainService();
-		adminFunction = new Service_AdminFunction();
-		viewAdminFunction = new ViewAdminFunction();
+		adminFunction = new Service_AdminFunction_A();
+		viewAdminFunction = new View_AdminFunction_A();
+		viewAdminFunction2 = new View_AdminFunction2_A();
+		adminFunction2 = new Service_AdminFunction2_A();
 		scan = new Scanner(System.in);
 
 	}
@@ -110,7 +114,7 @@ public class AdminMain {
 			}else if(num == 5){
 				
 				flag = false;
-				// 관리자 5번기능
+				cAttendanceMgmt();
 				
 			}else if(num == 6){
 				
@@ -130,6 +134,98 @@ public class AdminMain {
 			}else {
 				viewAdminMain.vWrong(); // 잘못입력 표시
 			}
+		}
+		
+	}
+
+	public void cAttendanceMgmt() {
+		
+		viewAdminFunction2.vAttendanceMgmt();
+		
+		String select = scan.nextLine();
+		
+		if(select.equalsIgnoreCase("a")) {
+			
+			// 1. 관리자 - 5. 출결 관리 및 출결조회 -a. 학생별 조회 및 수정
+			cAttendanceStudentInfoModify();
+			
+			
+		}else if(select.equalsIgnoreCase("b")) {
+			
+			// 1. 관리자 - 5. 출결 관리 및 출결조회 -b. 과정별 조회
+			cAttendanceCourseInfo();
+			
+		}else if(select.equalsIgnoreCase("z")) {
+			//관리자 초기메뉴로 돌아가기
+			cAdminMainMenu();
+		}
+		
+	}
+
+	public void cAttendanceCourseInfo() {
+		
+		// 1. 관리자 - 5. 출결 관리 및 출결조회 -b. 과정별 조회
+		adminFunction2.sAttendanceCourseInfo();
+		
+		String select = scan.nextLine();
+		if(select.equalsIgnoreCase("z")) {
+			// 1. 관리자 - 5. 출결 관리 및 출결조회로 이동
+			cAttendanceMgmt();
+		}else{
+			adminFunction2.sAttendanceCourseView(select);
+			
+			String choice = scan.nextLine();
+			
+			if(choice.equalsIgnoreCase("a")) {
+				adminFunction2.sAttendanceCourseModify(choice);
+				
+				// 1. 관리자 - 5. 출결 관리 및 출결조회 -b. 과정별 조회로 돌아감
+				cAttendanceCourseInfo();
+				
+			}else if(choice.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 5. 출결 관리 및 출결조회 -b. 과정별 조회로 돌아감
+				cAttendanceCourseInfo();
+			}
+		}
+		
+	}
+
+	public void cAttendanceStudentInfoModify() {
+		// 1. 관리자 - 5. 출결 관리 및 출결조회 -a. 학생별 조회 및 수정
+		
+		adminFunction2.sAttendanceStudentInfoModify();
+		
+		String choice = scan.nextLine();
+		
+		if(choice.equalsIgnoreCase("z")) {
+			// 1. 관리자 - 5. 출결 관리 및 출결조회로 이동
+			cAttendanceMgmt();
+		}else {
+			System.out.println("- 조회기간을 입력해 주세요(ex 2018-01-01)");
+			System.out.print("시작일(ex 2018-01-01) : ");
+			String startDate = scan.nextLine();
+			System.out.print("종료일(ex 2018-01-01) : ");
+			String endDate = scan.nextLine();
+			
+			System.out.println("계속하시려면 엔터를 눌러주세요.");
+			scan.nextLine();
+			
+			adminFunction2.sAttendanceStudentInfoModifySelect(choice,startDate, endDate);
+			
+			String sel = scan.nextLine();
+			
+			if(sel.equalsIgnoreCase("a")) {
+				
+				//근태상황 수정하기
+				adminFunction2.sAttendanceStateModify();
+				
+				// 1. 관리자 - 5. 출결 관리 및 출결조회 -a. 학생별 조회 및 수정으로 돌아감
+				cAttendanceStudentInfoModify();
+			}else if(sel.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 5. 출결 관리 및 출결조회 -a. 학생별 조회 및 수정으로 돌아감
+				cAttendanceStudentInfoModify();
+			}
+			
 		}
 		
 	}
@@ -190,10 +286,192 @@ public class AdminMain {
 				cConsult();
 			}
 			
-		}else if(select.equalsIgnoreCase("b")) {
+		}else if(select.equalsIgnoreCase("b")) { 
+			// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역
+			
+			cConsultResult();
+			
 			
 		}else if(select.equalsIgnoreCase("z")) {
 			cAdminMainMenu();
+		}
+		
+	}
+
+	public void cConsultResult() {
+		// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역
+		
+		viewAdminFunction.vConsultResult();
+		
+		String select = scan.nextLine();
+		
+		if(select.equalsIgnoreCase("a")) {
+			
+			// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - a. 일괄 조회 및 수정
+			
+			adminFunction.sConsultResultInfo();
+			
+			String choice = scan.nextLine();
+			
+			if(choice.equalsIgnoreCase("a")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - a. 일괄 조회 및 수정 - 수정하기
+				adminFunction.sConsultResultModify();
+				cConsultResult();
+				
+			}else if(choice.equalsIgnoreCase("b")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - a. 일괄 조회 및 수정 - 삭제하기
+				adminFunction.sConsultResultDelete();
+				cConsultResult();
+				
+			}else if(choice.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역으로 돌아감
+				cConsultResult();
+			}
+			
+		}else if(select.equalsIgnoreCase("b")) {
+			// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - b. 과정별 조회 및 수정
+			adminFunction.sConsultResultInfoCourse();
+			
+			String choice = scan.nextLine();
+			
+			if(choice.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역으로 돌아감
+				cConsultResult();
+			}else {
+				
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - b. 과정별 조회 및 수정 - 1. 선택
+				adminFunction.sConsultResultInfoCourseViewModify(choice);
+				
+				 String sel = scan.nextLine();
+				 
+				 if(sel.equalsIgnoreCase("a")) {
+					 
+					 // 상담일지 수정
+					 adminFunction.sConsultResultModify();
+					 
+					// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역으로 돌아감
+					cConsultResult();
+					 
+				 }else if(sel.equalsIgnoreCase("b")) {
+					 
+					 // 상담일지 삭제
+					 adminFunction.sConsultResultDelete();
+					 
+					// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역으로 돌아감
+					cConsultResult();
+					 
+				 }else if(sel.equalsIgnoreCase("z")) {
+					// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역으로 돌아감
+					cConsultResult();
+				 }
+				
+			}
+			
+		}else if(select.equalsIgnoreCase("c")) {
+			// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정
+			cConsultRecordStudent();
+			
+			
+			
+		}else if(select.equalsIgnoreCase("z")) {
+			// 1. 관리자 - 7. 상담일지 관리 및 조회로 돌아감
+			cConsult();
+			
+		}
+		
+	}
+
+	private void cConsultRecordStudent() {
+		// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정
+		
+		viewAdminFunction.vConsultRecordStudentInfoModify();
+		
+		String select = scan.nextLine();
+		
+		if(select.equalsIgnoreCase("a")) {
+			
+			adminFunction.cConsultRecordStudentName();
+			
+			String choice = scan.nextLine();
+			
+			if(choice.equalsIgnoreCase("a")) {
+				 
+				 // 상담일지 수정
+				 adminFunction.sConsultResultModify();
+				 
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+				 
+			 }else if(choice.equalsIgnoreCase("b")) {
+				 
+				 // 상담일지 삭제
+				 adminFunction.sConsultResultDelete();
+				 
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+				 
+			 }else if(choice.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+			 }
+			
+		}else if(select.equalsIgnoreCase("b")) {
+			
+			adminFunction.cConsultRecordStudentPw();
+			
+String choice = scan.nextLine();
+			
+			if(choice.equalsIgnoreCase("a")) {
+				 
+				 // 상담일지 수정
+				 adminFunction.sConsultResultModify();
+				 
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+				 
+			 }else if(choice.equalsIgnoreCase("b")) {
+				 
+				 // 상담일지 삭제
+				 adminFunction.sConsultResultDelete();
+				 
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+				 
+			 }else if(choice.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+			 }
+			
+		}else if(select.equalsIgnoreCase("c")) {
+			
+			adminFunction.cConsultRecordStudentMajor();
+			
+String choice = scan.nextLine();
+			
+			if(choice.equalsIgnoreCase("a")) {
+				 
+				 // 상담일지 수정
+				 adminFunction.sConsultResultModify();
+				 
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+				 
+			 }else if(choice.equalsIgnoreCase("b")) {
+				 
+				 // 상담일지 삭제
+				 adminFunction.sConsultResultDelete();
+				 
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+				 
+			 }else if(choice.equalsIgnoreCase("z")) {
+				// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역 - c. 학생별 조회 및 수정으로 돌아감
+				 cConsultRecordStudent();
+			 }
+			
+		}else if(select.equalsIgnoreCase("z")) {
+			// 1. 관리자 - 7. 상담일지 관리 및 조회 - b. 상담 일지 내역으로 돌아감
+			cConsultResult();
 		}
 		
 	}
@@ -252,6 +530,12 @@ public class AdminMain {
 		}else if(select.equalsIgnoreCase("c")) {
 			// c. 전화번호
 			
+			viewAdminFunction.vConsultRequestStudenTel();
+			
+			String tel = scan.nextLine();
+			
+			adminFunction.sConsultRequestStudentTel(tel);
+			
 			String choice = scan.nextLine();
 			
 			if(choice.equalsIgnoreCase("z")) {
@@ -267,7 +551,13 @@ public class AdminMain {
 			}
 			
 		}else if(select.equalsIgnoreCase("d")) {
+			// d. 등록일
 			
+			viewAdminFunction.vConsultRequestStudenRegdate();
+			
+			String regdate = scan.nextLine();
+			
+			adminFunction.sConsultRequestStudentRegdate(regdate);
 			
 			String choice = scan.nextLine();
 			
@@ -285,7 +575,11 @@ public class AdminMain {
 			
 		}else if(select.equalsIgnoreCase("e")) {
 			// e. 학과
+			viewAdminFunction.vConsultRequestStudenMajor();
 			
+			String major = scan.nextLine();
+			
+			adminFunction.sConsultRequestStudentMajor(major);
 			
 			String choice = scan.nextLine();
 			
@@ -367,6 +661,7 @@ public class AdminMain {
 			cTeacherEvalQuestionResultInfoDelete();
 			
 		}else if(select.equalsIgnoreCase("z")) {
+			// 관리자 초기메뉴로 돌아가기
 			cAdminMainMenu();
 		}
 		
