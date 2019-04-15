@@ -2,8 +2,7 @@ package adminmain;
 
 public interface IAdminMainService {
 
-	void login();
-	void service_adminMainMenu();
+	boolean sLogin(String id, String pw);
 	
 	
 }

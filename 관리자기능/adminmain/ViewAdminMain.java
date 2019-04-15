@@ -2,8 +2,19 @@ package adminmain;
 
 public class ViewAdminMain {
 
+	public void vNumSelect() {
+		System.out.print("번호 : ");
+	}
 	
-	public void loginMenu() {
+	public void vIdSelect() {
+		System.out.print("ID(이름) : ");
+	}
+	
+	public void vPwSelect() {
+		System.out.print("PW(주민번호 뒷자리) : ");
+	}
+	
+	public void vInitialMenu() {
 		
 		System.out.println("========================================");
 		System.out.println("\t1. 관리자");
@@ -21,6 +32,12 @@ public class ViewAdminMain {
 		System.out.println();
 		System.out.println();
 		System.out.println();
+		
+	}
+	
+	public void loginMenu() {
+		
+		System.out.println();
 		System.out.println("-----------------------------------------");
 		System.out.println("\t- 로그인 -");
 		
@@ -28,7 +45,11 @@ public class ViewAdminMain {
 		
 	}
 	
-	public void adminMainMenu() {
+	public void vWrong() {
+		System.out.println("잘못 입력하셨습니다. 다시입력해주세요.");
+	}
+	
+	public void vAdminMainMenu() {
 		
 		System.out.println("========================================");
 		System.out.println("\t1. 관리자");
@@ -44,7 +65,7 @@ public class ViewAdminMain {
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		System.out.println("0. 뒤로가기");
+		System.out.println("0. 로그아웃");
 		
 		System.out.print("번호 선택 : ");
 		

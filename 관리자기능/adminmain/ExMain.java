@@ -4,11 +4,9 @@ public class ExMain {
 
 	public static void main(String[] args) {
 		
-		ViewAdminMain viewAdminMain = new ViewAdminMain();
-		viewAdminMain.loginMenu();
+		AdminMain adminMain = new AdminMain();
+		adminMain.cStart();
 		
-		AdminMainService adminMainService = new AdminMainService();
-		adminMainService.login();
 		
 	}
 	
